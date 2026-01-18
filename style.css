@@ -71,3 +71,14 @@ footer {
   border-radius: 6px;
   font-weight: bold;
 }
+.lang-switch {
+  text-align: right;
+  margin: 10px 20px;
+}
+
+.lang-switch a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 5px;
+}
