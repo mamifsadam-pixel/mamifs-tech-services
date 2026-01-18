@@ -62,3 +62,12 @@ footer {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   z-index: 1000;
 }
+.pay-btn {
+  display: inline-block;
+  background: #1e90ff;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
