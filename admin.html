@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel | MAMIFS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --bg:#0b0f1a;
+  --panel:#11162a;
+  --accent:#3b82f6;
+  --gold:#f5c16c;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,Arial}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+aside{
+  width:240px;
+  background:var(--panel);
+  padding:20px;
+}
+aside h2{
+  color:var(--gold);
+  margin-bottom:30px;
+}
+aside button{
+  width:100%;
+  margin-bottom:12px;
+  padding:12px;
+  border:none;
+  background:#1f2937;
+  color:var(--text);
+  cursor:pointer;
+  border-radius:6px;
+}
+aside button:hover{
+  background:var(--accent);
+}
+
+/* MAIN */
+main{
+  flex:1;
+  padding:30px;
+}
+section{
+  display:none;
+}
+section.active{
+  display:block;
+}
+.card{
+  background:#0f172a;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+}
+input, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  background:#020617;
+  border:1px solid #1e293b;
+  color:white;
+  border-radius:6px;
+}
+.save{
+  margin-top:10px;
+  background:var(--gold);
+  color:black;
+  border:none;
+  padding:10px 18px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  aside{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside>
+  <h2>MAMIFS Admin</h2>
+  <button onclick="show('dashboard')">Dashboard</button>
+  <button onclick="show('services')">Services</button>
+  <button onclick="show('pricing')">Pricing</button>
+  <button onclick="show('content')">Website Content</button>
+  <button onclick="logout()">Logout</button>
+</aside>
+
+<!-- MAIN -->
+<main>
+
+<section id="dashboard" class="active">
+  <h1>Welcome Admin 👋</h1>
+  <div class="card">
+    <p>Status: <strong style="color:#22c55e">Online</strong></p>
+    <p>Website: mamifsadam-pixel</p>
+  </div>
+</section>
+
+<section id="services">
+  <h1>Edit Services</h1>
+  <div class="card">
+    <label>Service 1</label>
+    <input placeholder="IT Support">
+    <label>Service 2</label>
+    <input placeholder="Website Design">
+    <label>Service 3</label>
+    <input placeholder="Training">
+    <button class="save">Save</button>
+  </div>
+</section>
+
+<section id="pricing">
+  <h1>Edit Pricing</h1>
+  <div class="card">
+    <input placeholder="Basic Package">
+    <input placeholder="Standard Package">
+    <input placeholder="Premium Package">
+    <button class="save">Save</button>
+  </div>
+</section>
+
+<section id="content">
+  <h1>Edit Website Text</h1>
+  <div class="card">
+    <textarea rows="5" placeholder="Homepage text..."></textarea>
+    <button class="save">Save</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+function logout(){
+  alert("Logged out");
+  window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
