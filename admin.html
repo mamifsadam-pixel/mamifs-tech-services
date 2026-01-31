@@ -21,19 +21,6 @@ firebase.auth().onAuthStateChanged(user=>{
 });
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-  function save(){
-  db.collection("site").doc("content").set({
-    title: title.value,
-    about: about.value,
-    services: services.value,
-    contact: contact.value
-  }).then(()=>{
-    status.innerText = "Saved successfully ✔️";
-  }).catch(e=>{
-    status.innerText = e.message;
-  });
-}
-
 </script>
 
 <style>
@@ -196,6 +183,29 @@ function logout(){
   alert("Logged out");
   window.location.href="index.html";
 }
+
+  function save(){
+  db.collection("site").doc("content").set({
+    title: title.value,
+    about: about.value,
+    services: services.value,
+    contact: contact.value
+  }).then(()=>{
+    status.innerText = "Saved successfully ✔️";
+  }).catch(e=>{
+    status.innerText = e.message;
+  });
+}
+db.collection("site").doc("content").get().then(doc=>{
+  if(doc.exists){
+    const d = doc.data();
+    title.value = d.title || "";
+    about.value = d.about || "";
+    services.value = d.services || "";
+    contact.value = d.contact || "";
+  }
+});
+
 </script>
 
 </body>
