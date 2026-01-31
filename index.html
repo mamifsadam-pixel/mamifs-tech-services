@@ -229,6 +229,22 @@ db.collection("site").doc("content").onSnapshot(doc=>{
 </script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey:  "AIzaSyChtI_C63XMPQ1jxtjXQnrfiKWkC8QrOTU",
+    authDomain: "mamifs-admin.firebaseapp.com",
+    projectId:  "mamifs-admin",
+    storageBucket: "mamifs-admin.firebasestorage.app",
+    messagingSenderId: "579245190174",
+    appId: "1:579245190174:web:784e742459ac18beb3920f"
+  };
+
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+</script>
   
 </body>
 </html>
