@@ -140,27 +140,20 @@ function login(){
   </div>
 </div>
 <script>
-function openLogin() {
-  document.getElementById("loginModal").style.display = "block";
-}
-
-function closeLogin() {
-  document.getElementById("loginModal").style.display = "none";
-}
-
 function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  // DEMO ADMIN LOGIN
-  if (email === "admin@mamifs.com" && password === "1234") {
-    alert("Welcome Admin!");
-    window.location.href = "admin.html";
-  } else {
-    document.getElementById("error").innerText = "Invalid login details";
-  }
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      window.location.href = "admin.html";
+    })
+    .catch((error) => {
+      document.getElementById("error").innerText = error.message;
+    });
 }
 </script>
+
 
 </body>
 </html>
