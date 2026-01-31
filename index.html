@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAMIFS | Professional Services</title>
+
+  <style>
+    :root{
+      --bg:#0b0f1a;
+      --card:#11162a;
+      --blue:#1e90ff;
+      --gold:#f5c16c;
+      --text:#eaeaf0;
+    }
+
+    *{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+    body{
+      margin:0;
+      background:linear-gradient(135deg,#050814,#0b0f1a);
+      color:var(--text);
+    }
+
+    header{
+      padding:40px 20px;
+      text-align:center;
+    }
+    header h1{
+      font-size:2.5rem;
+      color:var(--gold);
+    }
+    header p{
+      color:#9fb6ff;
+    }
+
+    /* Lamp */
+    .lamp-container{
+      display:flex;
+      justify-content:center;
+      margin:40px 0;
+    }
+    .lamp{
+      width:80px;
+      height:120px;
+      background:radial-gradient(circle at top, #444, #000);
+      border-radius:50% 50% 20% 20%;
+      position:relative;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .lamp::after{
+      content:"";
+      position:absolute;
+      bottom:-60px;
+      left:-60px;
+      width:200px;
+      height:120px;
+      background:radial-gradient(circle, rgba(30,144,255,0.35), transparent 70%);
+      opacity:0;
+      transition:0.4s;
+    }
+    .lamp.on::after{opacity:1}
+
+    /* Login */
+    .login-box{
+      max-width:360px;
+      margin:0 auto;
+      background:var(--card);
+      padding:25px;
+      border-radius:12px;
+      box-shadow:0 0 25px rgba(30,144,255,0.25);
+      display:none;
+    }
+    .login-box h2{color:var(--gold);text-align:center}
+    .login-box input{
+      width:100%;
+      padding:12px;
+      margin:10px 0;
+      border-radius:8px;
+      border:none;
+      outline:none;
+    }
+    .login-box button{
+      width:100%;
+      padding:12px;
+      background:var(--blue);
+      border:none;
+      color:white;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    /* Services */
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      padding:40px;
+    }
+    .card{
+      background:var(--card);
+      padding:20px;
+      border-radius:14px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+    .card h3{color:var(--gold)}
+    .card p{color:#bcd}
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#777;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MAMIFS Professional Services</h1>
+  <p>IT • Web • Training • Digital Solutions</p>
+</header>
+
+<div class="lamp-container">
+  <div class="lamp" id="lamp"></div>
+</div>
+
+<div class="login-box" id="loginBox">
+  <h2>Admin Login</h2>
+  <input type="text" placeholder="Username" />
+  <input type="password" placeholder="Password" />
+  <button>Login</button>
+</div>
+
+<section class="services">
+  <div class="card">
+    <h3>Website Design</h3>
+    <p>Modern, mobile-first, SEO-ready websites.</p>
+  </div>
+  <div class="card">
+    <h3>IT Support</h3>
+    <p>Software install, troubleshooting, training.</p>
+  </div>
+  <div class="card">
+    <h3>Digital Payments</h3>
+    <p>Integrate online & mobile payment systems.</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 MAMIFS — All rights reserved
+</footer>
+
+<script>
+  const lamp = document.getElementById('lamp');
+  const loginBox = document.getElementById('loginBox');
+
+  lamp.addEventListener('click',()=>{
+    lamp.classList.toggle('on');
+    loginBox.style.display = lamp.classList.contains('on') ? 'block' : 'none';
+  });
+</script>
+
+</body>
+</html>
