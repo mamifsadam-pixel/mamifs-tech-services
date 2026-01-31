@@ -190,6 +190,17 @@
   const analytics = getAnalytics(app);
   
   };
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+db.collection("site").doc("content").onSnapshot(doc=>{
+  if(doc.exists){
+    const d = doc.data();
+    document.getElementById("siteTitle").innerText = d.title;
+    document.getElementById("aboutText").innerText = d.about;
+    document.getElementById("contactText").innerText = d.contact;
+  }
+});
 
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
@@ -208,6 +219,8 @@
       });
   }
 </script>
-
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  
 </body>
 </html>
