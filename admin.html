@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <title>Admin Panel | MAMIFS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  // 🔴 SAME CONFIG HERE
+};
+
+firebase.initializeApp(firebaseConfig);
+firebase.auth().onAuthStateChanged(user=>{
+  if(!user){
+    window.location.href="login.html";
+  }
+});
+</script>
 
 <style>
 :root{
