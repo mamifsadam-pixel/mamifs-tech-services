@@ -41,6 +41,58 @@ button{
   color:white;
   cursor:pointer;
 }
+/* Lamp */
+#lamp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 40px;
+  cursor: pointer;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px gold; }
+  to { text-shadow: 0 0 20px gold; }
+}
+
+/* Login Modal */
+#loginModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+}
+
+.login-box {
+  background: #0b1c2d;
+  color: white;
+  width: 300px;
+  padding: 25px;
+  margin: 15% auto;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.login-box button {
+  background: gold;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.login-box span {
+  cursor: pointer;
+  color: red;
+}
+
 </style>
 </head>
 
@@ -71,6 +123,42 @@ function login(){
   }).catch(e=>{
     msg.innerText = e.message;
   });
+}
+</script>
+<!-- Lamp Icon -->
+<div id="lamp" onclick="openLogin()">💡</div>
+
+<!-- Login Modal -->
+<div id="loginModal">
+  <div class="login-box">
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="error"></p>
+    <span onclick="closeLogin()">✖</span>
+  </div>
+</div>
+<script>
+function openLogin() {
+  document.getElementById("loginModal").style.display = "block";
+}
+
+function closeLogin() {
+  document.getElementById("loginModal").style.display = "none";
+}
+
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  // DEMO ADMIN LOGIN
+  if (email === "admin@mamifs.com" && password === "1234") {
+    alert("Welcome Admin!");
+    window.location.href = "admin.html";
+  } else {
+    document.getElementById("error").innerText = "Invalid login details";
+  }
 }
 </script>
 
