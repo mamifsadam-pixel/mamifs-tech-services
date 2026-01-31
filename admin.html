@@ -21,6 +21,19 @@ firebase.auth().onAuthStateChanged(user=>{
 });
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
+  function save(){
+  db.collection("site").doc("content").set({
+    title: title.value,
+    about: about.value,
+    services: services.value,
+    contact: contact.value
+  }).then(()=>{
+    status.innerText = "Saved successfully ✔️";
+  }).catch(e=>{
+    status.innerText = e.message;
+  });
+}
+
 </script>
 
 <style>
@@ -123,6 +136,15 @@ input, textarea{
 
 <!-- MAIN -->
 <main>
+<h2>Website Content</h2>
+
+<input id="title" placeholder="Company Name">
+<textarea id="about" placeholder="About company"></textarea>
+<textarea id="services" placeholder="Services (comma separated)"></textarea>
+<input id="contact" placeholder="Contact info">
+
+<button onclick="save()">Save Changes</button>
+<p id="status"></p>
 
 <section id="dashboard" class="active">
   <h1>Welcome Admin 👋</h1>
