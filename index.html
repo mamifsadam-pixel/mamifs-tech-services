@@ -180,10 +180,39 @@ footer{
 
   <div style="max-width:1000px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;">
     
-    <div class="card">
-      <h3>Profile</h3>
-      <p>Admin information & settings</p>
-    </div>
+   <div class="card">
+  <h3>Edit Services</h3>
+
+  <input id="s1t" placeholder="Service 1 Title">
+  <input id="s1d" placeholder="Service 1 Description">
+
+  <input id="s2t" placeholder="Service 2 Title">
+  <input id="s2d" placeholder="Service 2 Description">
+
+  <input id="s3t" placeholder="Service 3 Title">
+  <input id="s3d" placeholder="Service 3 Description">
+
+  <button onclick="saveServices()">Save Changes</button>
+</div>
+<style>
+.card input{
+  width:100%;
+  padding:8px;
+  margin:5px 0;
+  border-radius:6px;
+  border:none;
+}
+.card button{
+  margin-top:10px;
+  padding:10px;
+  background:#ffd700;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+</style>
+
 <section id="services">
   <h2>Our Services</h2>
 
@@ -204,7 +233,6 @@ footer{
     </div>
   </div>
 </section>
-
  
 
 <!-- SERVICES -->
