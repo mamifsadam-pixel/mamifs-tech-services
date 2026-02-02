@@ -305,18 +305,39 @@ function logout(){
 </script>
 <script>
 function saveServices(){
-  document.getElementById("service1Title").innerText = document.getElementById("s1t").value;
-  document.getElementById("service1Desc").innerText = document.getElementById("s1d").value;
+  const data = {
+    s1t: document.getElementById("s1t").value,
+    s1d: document.getElementById("s1d").value,
+    s2t: document.getElementById("s2t").value,
+    s2d: document.getElementById("s2d").value,
+    s3t: document.getElementById("s3t").value,
+    s3d: document.getElementById("s3d").value
+  };
 
-  document.getElementById("service2Title").innerText = document.getElementById("s2t").value;
-  document.getElementById("service2Desc").innerText = document.getElementById("s2d").value;
+  localStorage.setItem("servicesData", JSON.stringify(data));
+  applyServices();
 
-  document.getElementById("service3Title").innerText = document.getElementById("s3t").value;
-  document.getElementById("service3Desc").innerText = document.getElementById("s3d").value;
-
-  alert("Services updated successfully ✔️");
+  alert("Services saved permanently ✔️");
 }
+
+function applyServices(){
+  const saved = localStorage.getItem("servicesData");
+  if(!saved) return;
+
+  const data = JSON.parse(saved);
+
+  document.getElementById("service1Title").innerText = data.s1t;
+  document.getElementById("service1Desc").innerText = data.s1d;
+  document.getElementById("service2Title").innerText = data.s2t;
+  document.getElementById("service2Desc").innerText = data.s2d;
+  document.getElementById("service3Title").innerText = data.s3t;
+  document.getElementById("service3Desc").innerText = data.s3d;
+}
+
+/* Load saved data on page load */
+window.onload = applyServices;
 </script>
+
 
 </body>
 </html>
