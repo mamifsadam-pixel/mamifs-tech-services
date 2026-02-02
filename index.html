@@ -169,11 +169,18 @@ footer{
 <!-- LOGIN -->
 <div id="loginBox">
   <h2>Admin Login</h2>
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
-  <button id="loginBtn">Login</button>
-  <div id="message"></div>
+
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+
+  <button type="button" onclick="login()">Login</button>
 </div>
+
+<div id="adminPanel" style="display:none;">
+  <h2>Admin Panel</h2>
+  <button onclick="logout()">Logout</button>
+</div>
+
 <!-- ADMIN DASHBOARD -->
 <div id="dashboard" style="display:none;padding:40px;">
   <h2 style="color:#ffd700;text-align:center;">Admin Dashboard</h2>
@@ -336,6 +343,41 @@ function applyServices(){
 
 /* Load saved data on page load */
 window.onload = applyServices;
+  <script>
+const ADMIN_EMAIL = "admin@example.com";
+const ADMIN_PASS  = "123456";
+
+function login(){
+  const e = document.getElementById("email").value;
+  const p = document.getElementById("password").value;
+
+  if(e === ADMIN_EMAIL && p === ADMIN_PASS){
+    localStorage.setItem("loggedIn", "true");
+    showAdmin();
+    alert("Login successful ✔️");
+  } else {
+    alert("Wrong email or password ❌");
+  }
+}
+
+function logout(){
+  localStorage.removeItem("loggedIn");
+  location.reload();
+}
+
+function showAdmin(){
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("adminPanel").style.display = "block";
+}
+
+/* AUTO LOGIN ON PAGE LOAD */
+window.addEventListener("load", () => {
+  if(localStorage.getItem("loggedIn") === "true"){
+    showAdmin();
+  }
+});
+</script>
+
 </script>
 
 
