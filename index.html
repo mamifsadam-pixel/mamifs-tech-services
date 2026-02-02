@@ -303,6 +303,20 @@ function logout(){
   document.getElementById("message").innerText = "";
 }
 </script>
+<script>
+function saveServices(){
+  document.getElementById("service1Title").innerText = document.getElementById("s1t").value;
+  document.getElementById("service1Desc").innerText = document.getElementById("s1d").value;
+
+  document.getElementById("service2Title").innerText = document.getElementById("s2t").value;
+  document.getElementById("service2Desc").innerText = document.getElementById("s2d").value;
+
+  document.getElementById("service3Title").innerText = document.getElementById("s3t").value;
+  document.getElementById("service3Desc").innerText = document.getElementById("s3d").value;
+
+  alert("Services updated successfully ✔️");
+}
+</script>
 
 </body>
 </html>
