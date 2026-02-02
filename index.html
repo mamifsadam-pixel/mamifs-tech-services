@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAMIFS | Professional IT Services</title>
+
+<style>
+/* ===== RESET ===== */
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+
+/* ===== BODY ===== */
+body {
+  background: radial-gradient(circle at top, #0b1c2d, #000);
+  color: #fff;
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align:center;
+  padding:60px 20px;
+}
+
+header h1 {
+  font-size:2.5rem;
+  color:#ffd700;
+}
+
+header p {
+  color:#9fd3ff;
+  margin-top:10px;
+}
+
+/* ===== LAMP ===== */
+.lamp-container {
+  display:flex;
+  justify-content:center;
+  margin-top:40px;
+}
+
+.lamp {
+  width:120px;
+  cursor:pointer;
+  transition: transform 0.3s;
+}
+
+.lamp:hover {
+  transform: scale(1.05);
+}
+
+.light {
+  width:200px;
+  height:200px;
+  background: radial-gradient(circle, rgba(255,215,0,0.6), rgba(255,215,0,0));
+  border-radius:50%;
+  margin:-40px auto 0;
+  display:none;
+}
+
+/* ===== LOGIN PANEL ===== */
+#loginPanel {
+  display:none;
+  max-width:360px;
+  margin:30px auto;
+  background:#0f2438;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 0 30px #00aaff;
+}
+
+#loginPanel h2 {
+  text-align:center;
+  margin-bottom:20px;
+  color:#ffd700;
+}
+
+#loginPanel input {
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border:none;
+  border-radius:6px;
+}
+
+#loginPanel button {
+  width:100%;
+  padding:12px;
+  background:#ffd700;
+  border:none;
+  border-radius:6px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+#loginMessage {
+  text-align:center;
+  margin-top:10px;
+  font-size:14px;
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding:60px 20px;
+}
+
+.section-light {
+  background:#f5f8fc;
+  color:#000;
+}
+
+section h2 {
+  text-align:center;
+  margin-bottom:30px;
+  color:#0b1c2d;
+}
+
+/* ===== SERVICES ===== */
+.services {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:20px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.card {
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  color:#0059b3;
+  margin-bottom:10px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align:center;
+  padding:20px;
+  background:#000;
+  color:#aaa;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width:600px) {
+  header h1 { font-size:2rem; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>MAMIFS IT SOLUTIONS</h1>
+  <p>Professional IT • Web • Training • Support</p>
+
+  <div class="lamp-container">
+    <img src="https://i.imgur.com/9QZ7M9G.png" class="lamp" id="lamp" alt="Lamp">
+  </div>
+  <div class="light" id="light"></div>
+</header>
+
+<!-- LOGIN -->
+<div id="loginPanel">
+  <h2>Admin Login</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <div id="loginMessage"></div>
+</div>
+
+<!-- SERVICES -->
+<section class="section-light">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="card">
+      <h3>IT Support</h3>
+      <p>Computer repair, software installation, troubleshooting.</p>
+    </div>
+    <div class="card">
+      <h3>Website Design</h3>
+      <p>Modern, responsive, professional websites.</p>
+    </div>
+    <div class="card">
+      <h3>Training</h3>
+      <p>English, IT, digital skills training.</p>
+    </div>
+    <div class="card">
+      <h3>Business Solutions</h3>
+      <p>NGO, startup, and company digital solutions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section>
+  <h2>Contact</h2>
+  <p style="text-align:center;">
+    📞 WhatsApp: +23564743633<br>
+    ✉️ Email: mamifsadam@gmail.com
+  </p>
+</section>
+
+<footer>
+  © 2026 MAMIFS • All Rights Reserved
+</footer>
+
+<script>
+const lamp = document.getElementById("lamp");
+const loginPanel = document.getElementById("loginPanel");
+const light = document.getElementById("light");
+
+lamp.addEventListener("click", () => {
+  light.style.display = "block";
+  loginPanel.style.display = "block";
+});
+
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const msg = document.getElementById("loginMessage");
+
+  if (email === "admin@mamifs.com" && password === "1234") {
+    msg.style.color = "lightgreen";
+    msg.textContent = "Login successful ✔️";
+  } else {
+    msg.style.color = "red";
+    msg.textContent = "Invalid login ❌";
+  }
+}
+</script>
+
+</body>
+</html>
