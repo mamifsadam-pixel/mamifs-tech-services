@@ -245,6 +245,7 @@ const lamp = document.getElementById("lamp");
 const light = document.getElementById("light");
 const loginBox = document.getElementById("loginBox");
 const loginBtn = document.getElementById("loginBtn");
+const dashboard = document.getElementById("dashboard");
 
 lamp.onclick = function(){
   light.style.display = "block";
@@ -259,11 +260,26 @@ loginBtn.onclick = function(){
   if(email === "admin@mamifs.com" && password === "1234"){
     message.style.color = "lightgreen";
     message.innerText = "Login successful ✔️";
+
+    setTimeout(() => {
+      loginBox.style.display = "none";
+      dashboard.style.display = "block";
+      window.scrollTo(0, dashboard.offsetTop);
+    }, 800);
+
   }else{
     message.style.color = "red";
     message.innerText = "Wrong email or password ❌";
   }
 };
+
+function logout(){
+  dashboard.style.display = "none";
+  loginBox.style.display = "block";
+  document.getElementById("email").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("message").innerText = "";
+}
 </script>
 
 </body>
