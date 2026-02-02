@@ -233,14 +233,30 @@ const ADMIN_EMAIL="admin@example.com";
 const ADMIN_PASS="123456";
 
 function toggleLamp(){
-  const lamp=document.getElementById("lamp");
+  const lamp = document.getElementById("lamp");
+  const clickSound = document.getElementById("clickSound");
+  const humSound = document.getElementById("humSound");
+  const loginBox = document.getElementById("loginBox");
+
+  clickSound.currentTime = 0;
+  clickSound.play();
+
   lamp.classList.toggle("on");
 
-  document.getElementById("loginBox").style.display="block";
+  if(lamp.classList.contains("on")){
+    humSound.volume = 0.4;
+    humSound.play();
+    loginBox.style.display = "block";
+  }else{
+    humSound.pause();
+    humSound.currentTime = 0;
+    loginBox.style.display = "none";
+  }
 
   lamp.style.animation="none";
   setTimeout(()=>lamp.style.animation="swing 4s ease-in-out infinite",50);
 }
+
 
 function login(){
   const e=email.value,p=password.value;
@@ -260,9 +276,23 @@ function showPage(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
-
+function fadeAudio(audio, target){
+  let step = target > audio.volume ? 0.02 : -0.02;
+  let interval = setInterval(()=>{
+    audio.volume = Math.max(0, Math.min(1, audio.volume + step));
+    if(audio.volume === target) clearInterval(interval);
+  },30);
+}
+ fadeAudio(humSound,0);
+setTimeout(()=>humSound.pause(),600);
+ 
+humSound.play();
+fadeAudio(humSound,0.4);
+ src="hum.mp3" preload="auto" loop></audio>
 if(localStorage.getItem("login")) showPage("adminPanel");
 </script>
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+<audio id=humSound.volume = 0;
 
 </body>
 </html>
