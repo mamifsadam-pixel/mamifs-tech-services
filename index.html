@@ -15,28 +15,78 @@ body{
   color:#fff;
 }
 
-/* ===== LAMP ===== */
+/* ===== ADVANCED LAMP ===== */
 .lamp-container{
   position:fixed;
   top:0;
   left:50%;
-  transform:translateX(-50%);
+  transform-origin:top center;
+  animation:swing 4s ease-in-out infinite;
   cursor:pointer;
   z-index:10;
 }
-.cable{width:4px;height:160px;background:#444;margin:auto}
-.lamp{width:120px;height:80px;background:#222;border-radius:0 0 60px 60px;position:relative}
+
+@keyframes swing{
+  0%{transform:translateX(-50%) rotate(2deg)}
+  50%{transform:translateX(-50%) rotate(-2deg)}
+  100%{transform:translateX(-50%) rotate(2deg)}
+}
+
+.cable{
+  width:4px;
+  height:160px;
+  background:linear-gradient(#666,#222);
+  margin:auto;
+}
+
+.lamp{
+  width:120px;
+  height:80px;
+  background:#222;
+  border-radius:0 0 60px 60px;
+  position:relative;
+  box-shadow:0 0 15px #000;
+}
+.flash{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle,rgba(255,255,255,.8),transparent 70%);
+  opacity:0;
+  transition:.3s;
+  border-radius:0 0 60px 60px;
+}
+
+.on .flash{
+  opacity:.6;
+}
+
 .light{
   position:absolute;
   top:80px;
   left:50%;
   transform:translateX(-50%);
-  width:0;height:0;
-  background:radial-gradient(circle,rgba(255,215,120,.8),transparent 70%);
+  width:0;
+  height:0;
+  border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(255,215,130,.9) 0%,
+    rgba(255,215,130,.5) 30%,
+    transparent 70%);
   opacity:0;
   transition:.6s;
+  animation:glow 2s infinite alternate;
 }
-.on .light{width:450px;height:450px;opacity:1}
+
+.on .light{
+  width:480px;
+  height:480px;
+  opacity:1;
+}
+
+@keyframes glow{
+  from{filter:brightness(1)}
+  to{filter:brightness(1.4)}
+}
 
 /* ===== LOGIN ===== */
 .login-box{
@@ -120,6 +170,7 @@ section.active{display:block}
   <div class="cable"></div>
   <div class="lamp">
     <div class="light"></div>
+    <div class="flash"></div>
   </div>
 </div>
 
@@ -181,9 +232,15 @@ const ADMIN_EMAIL="admin@example.com";
 const ADMIN_PASS="123456";
 
 function toggleLamp(){
-  document.getElementById("lamp").classList.toggle("on");
+  const lamp=document.getElementById("lamp");
+  lamp.classList.toggle("on");
+
   document.getElementById("loginBox").style.display="block";
+
+  lamp.style.animation="none";
+  setTimeout(()=>lamp.style.animation="swing 4s ease-in-out infinite",50);
 }
+
 
 function login(){
   const e=email.value,p=password.value;
