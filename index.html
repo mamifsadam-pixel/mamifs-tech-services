@@ -40,6 +40,54 @@ header{
   50%{transform:rotate(-2deg)}
   100%{transform:rotate(2deg)}
 }
+.lamp-wrapper{
+  position:relative;
+  margin-bottom:40px;
+  text-align:center;
+}
+
+.cord{
+  width:4px;
+  height:140px;
+  background:#333;
+  margin:auto;
+}
+
+.lamp{
+  width:140px;
+  height:90px;
+  background:linear-gradient(#222,#000);
+  border-radius:0 0 70px 70px;
+  cursor:pointer;
+  transform-origin:top center;
+  animation:swing 4s ease-in-out infinite;
+}
+
+@keyframes swing{
+  0%{transform:rotate(2deg)}
+  50%{transform:rotate(-2deg)}
+  100%{transform:rotate(2deg)}
+}
+
+.light{
+  position:absolute;
+  top:220px;
+  left:50%;
+  transform:translateX(-50%);
+  width:0;
+  height:0;
+  background:radial-gradient(circle at top, rgba(255,215,120,.5), transparent 70%);
+  clip-path:polygon(45% 0%,55% 0%,100% 100%,0% 100%);
+  opacity:0;
+  transition:.4s;
+  pointer-events:none;
+}
+
+.lamp.on + .light{
+  width:420px;
+  height:500px;
+  opacity:1;
+}
 
 .light{
   position:absolute;
@@ -102,6 +150,11 @@ footer{text-align:center;padding:20px;background:#0b1020;color:#aaa}
     <div class="lamp" id="lamp"></div>
     <div class="light"></div>
   </div>
+<div class="lamp-wrapper">
+  <div class="cord"></div>
+  <div id="lamp" class="lamp"></div>
+  <div class="light"></div>
+</div>
 
 <div id="loginPanel" class="login-panel hidden">
   <h2>Admin Login</h2>
@@ -113,6 +166,15 @@ footer{text-align:center;padding:20px;background:#0b1020;color:#aaa}
 
   <p id="loginMsg"></p>
 </div>
+<script>
+const lamp = document.getElementById("lamp");
+const loginPanel = document.getElementById("loginPanel");
+
+lamp.addEventListener("click", () => {
+  lamp.classList.toggle("on");
+  loginPanel.classList.toggle("hidden");
+});
+</script>
 
 </header>
 
