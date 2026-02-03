@@ -2,47 +2,37 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Lamp Login Website</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAMIFS Creative Lamp Website</title>
 
 <style>
-/* ===== RESET ===== */
-*{box-sizing:border-box}
-body{
-  margin:0;
-  height:100vh;
-  background:#05080f;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:Segoe UI, sans-serif;
-  color:#fff;
-  overflow:hidden;
-  perspective:1200px;
-}
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#05070f;color:#fff;overflow-x:hidden}
 
-/* ===== LAMP ===== */
-.lamp-container{
-  position:relative;
+/* ===== HEADER / HERO ===== */
+header{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   text-align:center;
 }
 
-.cord{
-  width:4px;
-  height:140px;
-  background:#111;
-  margin:auto;
+/* ===== LAMP ===== */
+.lamp-wrapper{
+  position:relative;
+  margin-bottom:40px;
 }
-
-#lamp{
-  width:120px;
-  height:80px;
-  background:linear-gradient(#111,#000);
-  border-radius:0 0 60px 60px;
+.cable{width:4px;height:150px;background:#333;margin:auto}
+.lamp{
+  width:140px;height:90px;
+  background:linear-gradient(#222,#000);
+  border-radius:0 0 70px 70px;
   cursor:pointer;
   transform-origin:top center;
   animation:swing 4s ease-in-out infinite;
-  box-shadow:0 20px 40px rgba(0,0,0,.8);
 }
 
 @keyframes swing{
@@ -51,119 +41,141 @@ body{
   100%{transform:rotate(2deg)}
 }
 
-/* ===== LIGHT ===== */
 .light{
   position:absolute;
-  top:220px;
-  left:50%;
-  transform:translateX(-50%);
-  width:360px;
-  height:500px;
-  background:radial-gradient(circle at top, rgba(255,215,120,.35), transparent 70%);
+  top:230px;left:50%;transform:translateX(-50%);
+  width:0;height:0;
+  background:radial-gradient(circle at top, rgba(255,215,120,.5), transparent 70%);
   clip-path:polygon(45% 0%,55% 0%,100% 100%,0% 100%);
-  opacity:0;
-  transition:.4s;
-  pointer-events:none;
+  opacity:0;transition:.5s;
 }
 
-#lamp.on + .light{
-  opacity:1;
-}
+.lamp.on + .light{width:420px;height:500px;opacity:1}
 
 /* ===== LOGIN ===== */
 .login-box{
-  position:absolute;
-  top:480px;
-  left:50%;
-  transform:translateX(-50%);
-  width:320px;
-  background:rgba(15,20,35,.95);
+  background:#0c1022;
   padding:25px;
   border-radius:12px;
-  box-shadow:0 0 30px rgba(255,215,120,.15);
-  opacity:0;
-  pointer-events:none;
-  transition:.4s;
-}
-
-.login-box.show{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.login-box h2{
-  margin-top:0;
-  text-align:center;
-  color:#ffd97a;
-}
-
-input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border:none;
-  border-radius:6px;
-  background:#0b1020;
-  color:#fff;
-}
-
-button{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:6px;
-  background:linear-gradient(135deg,#ffd97a,#caa13a);
-  color:#000;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.success{
-  text-align:center;
-  margin-top:15px;
-  color:#7CFF7C;
+  width:320px;
+  margin-top:20px;
   display:none;
 }
+.login-box h2{text-align:center;color:gold;margin-bottom:15px}
+.login-box input, .login-box button{
+  width:100%;padding:12px;margin:8px 0;border:none;border-radius:6px
+}
+.login-box button{background:gold;color:#000;font-weight:bold;cursor:pointer}
+
+/* ===== NAV ===== */
+nav{
+  background:#0b1020;
+  padding:15px;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+}
+nav a{color:gold;text-decoration:none;font-weight:bold}
+
+/* ===== SECTIONS ===== */
+section{padding:60px 20px;max-width:1000px;margin:auto}
+.card{
+  background:#101530;
+  padding:25px;
+  border-radius:14px;
+  margin:20px 0;
+  box-shadow:0 0 25px rgba(0,0,0,.6)
+}
+
+/* ===== ADMIN ===== */
+#admin{display:none;text-align:center}
+.logout{background:red;color:#fff;padding:10px 20px;border:none;border-radius:8px;cursor:pointer}
+
+footer{text-align:center;padding:20px;background:#0b1020;color:#aaa}
 </style>
 </head>
-
 <body>
 
-<div class="lamp-container">
-  <div class="cord"></div>
-
-  <div id="lamp"></div>
-  <div class="light"></div>
+<header>
+  <div class="lamp-wrapper">
+    <div class="cable"></div>
+    <div class="lamp" id="lamp"></div>
+    <div class="light"></div>
+  </div>
 
   <div class="login-box" id="loginBox">
     <h2>Admin Login</h2>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
     <button onclick="login()">Login</button>
-    <div class="success" id="success">✅ Login successful</div>
   </div>
-</div>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="home">
+  <div class="card">
+    <h1>Welcome to MAMIFS Tech Services</h1>
+    <p>Creative technology, logistics and digital solutions with a modern lamp-based interface.</p>
+  </div>
+</section>
+
+<section id="services">
+  <div class="card">
+    <h2>Our Services</h2>
+    <ul>
+      <li>IT Support & Repairs</li>
+      <li>Website Design & Hosting</li>
+      <li>Logistics & Delivery</li>
+      <li>Digital Skills Training</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="card">
+    <h2>Contact</h2>
+    <p>WhatsApp: +235 64 74 36 33</p>
+    <p>Email: mamifsadam@gmail.com</p>
+  </div>
+</section>
+
+<section id="admin">
+  <div class="card">
+    <h2>Admin Dashboard</h2>
+    <p>Login successful ✔️</p>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+</section>
+
+<footer>
+  © 2026 MAMIFS Tech Services. All rights reserved.
+</footer>
 
 <script>
-const lamp = document.getElementById("lamp");
-const loginBox = document.getElementById("loginBox");
+const lamp=document.getElementById('lamp');
+const loginBox=document.getElementById('loginBox');
+const admin=document.getElementById('admin');
 
-lamp.onclick = () => {
-  lamp.classList.toggle("on");
-  loginBox.classList.toggle("show");
-};
+lamp.onclick=()=>{
+  lamp.classList.toggle('on');
+  loginBox.style.display='block';
+}
 
 function login(){
-  const email = document.getElementById("email").value;
-  const pass = document.getElementById("password").value;
-  const success = document.getElementById("success");
-
-  if(email && pass){
-    success.style.display = "block";
-  }else{
-    alert("Enter email and password");
-  }
+  const e=email.value,p=password.value;
+  if(e==='admin@example.com' && p==='1234'){
+    loginBox.style.display='none';
+    admin.style.display='block';
+    window.scrollTo(0,admin.offsetTop);
+  }else alert('Wrong login');
 }
+
+function logout(){location.reload()}
 </script>
 
 </body>
