@@ -167,13 +167,10 @@ document.getElementById("loginBtn").addEventListener("click", function () {
   const password = document.getElementById("password").value;
   const msg = document.getElementById("loginMsg");
 
-  if (email === "admin@example.com" && password === "1234") {
-    msg.style.color = "lime";
-    msg.innerText = "Login successful";
-
-    document.getElementById("loginPanel").classList.add("hidden");
-    document.getElementById("adminPanel").classList.remove("hidden");
-  } else {
+ if (email === "admin@example.com" && password === "1234") {
+  localStorage.setItem("loggedIn", "true");
+  window.location.href = "dashboard.html";
+} else {
     msg.style.color = "red";
     msg.innerText = "Wrong email or password";
   }
