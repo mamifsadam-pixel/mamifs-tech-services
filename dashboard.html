@@ -2,50 +2,146 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard</title>
+
 <style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif}
 body{
-  margin:0;
   background:#05070f;
-  color:white;
-  font-family:Segoe UI, sans-serif;
-  padding:40px;
+  color:#fff;
+  min-height:100vh;
 }
+
+/* ===== TOP BAR ===== */
+.header{
+  background:#0b1020;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.header h1{color:gold;font-size:22px}
+.header button{
+  background:#c0392b;
+  border:none;
+  padding:10px 18px;
+  border-radius:6px;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ===== DASHBOARD GRID ===== */
+.container{
+  padding:30px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
 .card{
   background:#101530;
-  padding:30px;
-  border-radius:12px;
-  max-width:600px;
-  margin:auto;
-  text-align:center;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 0 25px rgba(0,0,0,.6);
+  transform:translateY(20px);
+  opacity:0;
+  animation:fadeUp .8s forwards;
 }
-button{
-  padding:10px 20px;
-  border:none;
-  border-radius:6px;
-  background:red;
-  color:white;
-  cursor:pointer;
+
+.card:nth-child(1){animation-delay:.1s}
+.card:nth-child(2){animation-delay:.2s}
+.card:nth-child(3){animation-delay:.3s}
+.card:nth-child(4){animation-delay:.4s}
+
+@keyframes fadeUp{
+  to{transform:translateY(0);opacity:1}
+}
+
+.card h2{
+  color:gold;
+  margin-bottom:10px;
+}
+
+.card p{
+  font-size:28px;
+  font-weight:bold;
+}
+
+/* ===== ACTIVITY ===== */
+.activity{
+  margin-top:40px;
+  background:#0c122a;
+  padding:25px;
+  border-radius:16px;
+}
+
+.activity h3{
+  margin-bottom:15px;
+  color:#7fb3ff;
+}
+
+.activity ul li{
+  padding:10px 0;
+  border-bottom:1px solid #1f274a;
+  list-style:none;
+}
+
+@media(max-width:600px){
+  .header h1{font-size:18px}
 }
 </style>
 </head>
-
 <body>
 
-<div class="card">
+<div class="header">
   <h1>Admin Dashboard</h1>
-  <p>Welcome, login successful ✅</p>
   <button onclick="logout()">Logout</button>
 </div>
 
+<div class="container">
+
+  <div class="grid">
+    <div class="card">
+      <h2>Users</h2>
+      <p>124</p>
+    </div>
+    <div class="card">
+      <h2>Services</h2>
+      <p>8</p>
+    </div>
+    <div class="card">
+      <h2>Messages</h2>
+      <p>19</p>
+    </div>
+    <div class="card">
+      <h2>Visits</h2>
+      <p>2,430</p>
+    </div>
+  </div>
+
+  <div class="activity">
+    <h3>Recent Activity</h3>
+    <ul>
+      <li>New contact form message</li>
+      <li>Service page updated</li>
+      <li>New user registered</li>
+      <li>Website visited from mobile</li>
+    </ul>
+  </div>
+
+</div>
+
 <script>
-if(localStorage.getItem("loggedIn") !== "true"){
-  window.location.href = "index.html";
+if(localStorage.getItem("loggedIn")!=="true"){
+  window.location.href="index.html";
 }
 
 function logout(){
   localStorage.removeItem("loggedIn");
-  window.location.href = "index.html";
+  window.location.href="index.html";
 }
 </script>
 
