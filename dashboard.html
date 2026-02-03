@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<style>
+body{
+  margin:0;
+  background:#05070f;
+  color:white;
+  font-family:Segoe UI, sans-serif;
+  padding:40px;
+}
+.card{
+  background:#101530;
+  padding:30px;
+  border-radius:12px;
+  max-width:600px;
+  margin:auto;
+  text-align:center;
+}
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:6px;
+  background:red;
+  color:white;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Admin Dashboard</h1>
+  <p>Welcome, login successful ✅</p>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+
+function logout(){
+  localStorage.removeItem("loggedIn");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
