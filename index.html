@@ -174,6 +174,44 @@ footer{
   <button id="loginBtn">Login</button>
   <div id="message"></div>
 </div>
+<!-- ADMIN DASHBOARD -->
+<div id="dashboard" style="display:none;padding:40px;">
+  <h2 style="color:#ffd700;text-align:center;">Admin Dashboard</h2>
+
+  <div style="max-width:1000px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;">
+    
+    <div class="card">
+      <h3>Profile</h3>
+      <p>Admin information & settings</p>
+    </div>
+
+    <div class="card">
+      <h3>Services</h3>
+      <p>Edit website services</p>
+    </div>
+
+    <div class="card">
+      <h3>Messages</h3>
+      <p>View client requests</p>
+    </div>
+
+    <div class="card">
+      <h3>Payments</h3>
+      <p>Manage pricing & invoices</p>
+    </div>
+
+    <div class="card">
+      <h3>Content</h3>
+      <p>Edit texts & sections</p>
+    </div>
+
+    <div class="card">
+      <h3>Logout</h3>
+      <button onclick="logout()" style="padding:10px;border:none;background:#c00;color:white;border-radius:6px;cursor:pointer;">Logout</button>
+    </div>
+
+  </div>
+</div>
 
 <!-- SERVICES -->
 <section class="light-section">
@@ -201,12 +239,12 @@ footer{
 <footer>
   © 2026 MAMIFS – All Rights Reserved
 </footer>
-
 <script>
 const lamp = document.getElementById("lamp");
 const light = document.getElementById("light");
 const loginBox = document.getElementById("loginBox");
 const loginBtn = document.getElementById("loginBtn");
+const dashboard = document.getElementById("dashboard");
 
 lamp.onclick = function(){
   light.style.display = "block";
@@ -221,12 +259,28 @@ loginBtn.onclick = function(){
   if(email === "admin@mamifs.com" && password === "1234"){
     message.style.color = "lightgreen";
     message.innerText = "Login successful ✔️";
+
+    setTimeout(() => {
+      loginBox.style.display = "none";
+      dashboard.style.display = "block";
+      window.scrollTo(0, dashboard.offsetTop);
+    }, 800);
+
   }else{
     message.style.color = "red";
     message.innerText = "Wrong email or password ❌";
   }
 };
+
+function logout(){
+  dashboard.style.display = "none";
+  loginBox.style.display = "block";
+  document.getElementById("email").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("message").innerText = "";
+}
 </script>
+
 
 </body>
 </html>
