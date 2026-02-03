@@ -25,6 +25,104 @@ body{
   cursor:pointer;
   z-index:10;
 }
+body{
+  background:#05080f;
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  perspective:1200px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* === LAMP CONTAINER === */
+.lamp-container{
+  position:relative;
+  transform-style:preserve-3d;
+}
+
+/* === CORD === */
+.cord{
+  width:4px;
+  height:160px;
+  background:linear-gradient(#111,#000);
+  margin:auto;
+}
+
+/* === LAMP BODY === */
+#lamp{
+  width:120px;
+  height:80px;
+  background:linear-gradient(#111,#000);
+  border-radius:0 0 60px 60px;
+  cursor:pointer;
+  transform-origin:top center;
+  transform:rotateX(12deg);
+  box-shadow:0 20px 40px rgba(0,0,0,0.8);
+}
+
+/* === LAMP INNER GLOW === */
+#lamp::after{
+  content:"";
+  position:absolute;
+  bottom:-10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:60px;
+  height:30px;
+  background:#000;
+  border-radius:50%;
+}
+
+/* === SWING === */
+@keyframes swing{
+  0%{transform:rotate(2deg);}
+  50%{transform:rotate(-2deg);}
+  100%{transform:rotate(2deg);}
+}
+
+#lamp{
+  animation:swing 4s ease-in-out infinite;
+}
+
+/* === LIGHT CONE === */
+.light{
+  position:absolute;
+  top:230px;
+  left:50%;
+  transform:translateX(-50%);
+  width:380px;
+  height:500px;
+  background:radial-gradient(circle at top, rgba(255,215,120,0.35), transparent 70%);
+  clip-path:polygon(45% 0%,55% 0%,100% 100%,0% 100%);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+}
+
+/* === FLOOR SHADOW === */
+.shadow{
+  position:absolute;
+  top:700px;
+  left:50%;
+  transform:translateX(-50%);
+  width:300px;
+  height:60px;
+  background:radial-gradient(ellipse, rgba(0,0,0,0.7), transparent 70%);
+  opacity:0;
+  transition:opacity .4s ease;
+}
+
+/* === LAMP ON === */
+#lamp.on + .light{
+  opacity:1;
+}
+
+#lamp.on ~ .shadow{
+  opacity:1;
+}
 
 @keyframes swing{
   0%{transform:translateX(-50%) rotate(2deg)}
@@ -166,12 +264,13 @@ section.active{display:block}
 <body>
 
 <!-- LAMP -->
-<div class="lamp-container" id="lamp" onclick="toggleLamp()">
-  <div class="cable"></div>
-  <div class="lamp">
-    <div class="light"></div>
-    <div class="flash"></div>
-  </div>
+<div class="lamp-container">
+  <div class="cord"></div>
+
+  <div id="lamp" onclick="toggleLamp()"></div>
+
+  <div class="light"></div>
+  <div class="shadow"></div>
 </div>
 
 <!-- LOGIN -->
