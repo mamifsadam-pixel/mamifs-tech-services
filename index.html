@@ -2,56 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Creative Lamp Website</title>
+<title>Lamp Login Website</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ===== RESET ===== */
 *{box-sizing:border-box}
-
 body{
-  margin:0;
-  background:#05070d;
-  font-family:Arial, sans-serif;
-  color:#fff;
-}
-
-/* ===== ADVANCED LAMP ===== */
-.lamp-container{
-  position:fixed;
-  top:0;
-  left:50%;
-  transform-origin:top center;
-  animation:swing 4s ease-in-out infinite;
-  cursor:pointer;
-  z-index:10;
-}
-body{
-  background:#05080f;
   margin:0;
   height:100vh;
-  overflow:hidden;
+  background:#05080f;
   display:flex;
   justify-content:center;
   align-items:center;
+  font-family:Segoe UI, sans-serif;
+  color:#fff;
+  overflow:hidden;
   perspective:1200px;
-  font-family: 'Segoe UI', sans-serif;
 }
 
-/* === LAMP CONTAINER === */
+/* ===== LAMP ===== */
 .lamp-container{
   position:relative;
-  transform-style:preserve-3d;
+  text-align:center;
 }
 
-/* === CORD === */
 .cord{
   width:4px;
-  height:160px;
-  background:linear-gradient(#111,#000);
+  height:140px;
+  background:#111;
   margin:auto;
 }
 
-/* === LAMP BODY === */
 #lamp{
   width:120px;
   height:80px;
@@ -59,308 +41,129 @@ body{
   border-radius:0 0 60px 60px;
   cursor:pointer;
   transform-origin:top center;
-  transform:rotateX(12deg);
-  box-shadow:0 20px 40px rgba(0,0,0,0.8);
-}
-
-/* === LAMP INNER GLOW === */
-#lamp::after{
-  content:"";
-  position:absolute;
-  bottom:-10px;
-  left:50%;
-  transform:translateX(-50%);
-  width:60px;
-  height:30px;
-  background:#000;
-  border-radius:50%;
-}
-
-/* === SWING === */
-@keyframes swing{
-  0%{transform:rotate(2deg);}
-  50%{transform:rotate(-2deg);}
-  100%{transform:rotate(2deg);}
-}
-
-#lamp{
   animation:swing 4s ease-in-out infinite;
+  box-shadow:0 20px 40px rgba(0,0,0,.8);
 }
 
-/* === LIGHT CONE === */
+@keyframes swing{
+  0%{transform:rotate(2deg)}
+  50%{transform:rotate(-2deg)}
+  100%{transform:rotate(2deg)}
+}
+
+/* ===== LIGHT ===== */
 .light{
   position:absolute;
-  top:230px;
+  top:220px;
   left:50%;
   transform:translateX(-50%);
-  width:380px;
+  width:360px;
   height:500px;
-  background:radial-gradient(circle at top, rgba(255,215,120,0.35), transparent 70%);
+  background:radial-gradient(circle at top, rgba(255,215,120,.35), transparent 70%);
   clip-path:polygon(45% 0%,55% 0%,100% 100%,0% 100%);
   opacity:0;
+  transition:.4s;
   pointer-events:none;
-  transition:opacity .4s ease;
 }
 
-/* === FLOOR SHADOW === */
-.shadow{
-  position:absolute;
-  top:700px;
-  left:50%;
-  transform:translateX(-50%);
-  width:300px;
-  height:60px;
-  background:radial-gradient(ellipse, rgba(0,0,0,0.7), transparent 70%);
-  opacity:0;
-  transition:opacity .4s ease;
-}
-
-/* === LAMP ON === */
 #lamp.on + .light{
   opacity:1;
 }
 
-#lamp.on ~ .shadow{
-  opacity:1;
-}
-
-@keyframes swing{
-  0%{transform:translateX(-50%) rotate(2deg)}
-  50%{transform:translateX(-50%) rotate(-2deg)}
-  100%{transform:translateX(-50%) rotate(2deg)}
-}
-
-.cable{
-  width:4px;
-  height:160px;
-  background:linear-gradient(#666,#222);
-  margin:auto;
-}
-
-.lamp{
-  width:120px;
-  height:80px;
-  background:#222;
-  border-radius:0 0 60px 60px;
-  position:relative;
-  box-shadow:0 0 15px #000;
-}
-.flash{
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle,rgba(255,255,255,.8),transparent 70%);
-  opacity:0;
-  transition:.3s;
-  border-radius:0 0 60px 60px;
-}
-
-.on .flash{
-  opacity:.6;
-}
-
-.light{
-  position:absolute;
-  top:80px;
-  left:50%;
-  transform:translateX(-50%);
-  width:0;
-  height:0;
-  border-radius:50%;
-  background:radial-gradient(circle,
-    rgba(255,215,130,.9) 0%,
-    rgba(255,215,130,.5) 30%,
-    transparent 70%);
-  opacity:0;
-  transition:.6s;
-  animation:glow 2s infinite alternate;
-}
-
-.on .light{
-  width:480px;
-  height:480px;
-  opacity:1;
-}
-
-@keyframes glow{
-  from{filter:brightness(1)}
-  to{filter:brightness(1.4)}
-}
-
 /* ===== LOGIN ===== */
 .login-box{
-  display:none;
-  position:fixed;
-  top:55%;
+  position:absolute;
+  top:480px;
   left:50%;
-  transform:translate(-50%,-50%);
-  background:#0c1020;
+  transform:translateX(-50%);
+  width:320px;
+  background:rgba(15,20,35,.95);
   padding:25px;
   border-radius:12px;
-  width:300px;
-  box-shadow:0 0 30px rgba(255,215,100,.3);
-  z-index:9;
+  box-shadow:0 0 30px rgba(255,215,120,.15);
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
 }
-.login-box h2{color:gold}
-.login-box input,button{
+
+.login-box.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.login-box h2{
+  margin-top:0;
+  text-align:center;
+  color:#ffd97a;
+}
+
+input{
   width:100%;
-  padding:10px;
-  margin:8px 0;
+  padding:12px;
+  margin:10px 0;
   border:none;
   border-radius:6px;
-}
-.login-box button{
-  background:gold;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* ===== NAV ===== */
-nav{
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  padding:20px;
   background:#0b1020;
-}
-nav a{
-  color:gold;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* ===== SECTIONS ===== */
-section{
-  display:none;
-  padding:60px 20px;
-  max-width:900px;
-  margin:auto;
-}
-section.active{display:block}
-
-.card{
-  background:#101530;
-  padding:20px;
-  border-radius:12px;
-  margin:20px 0;
-  box-shadow:0 0 20px rgba(0,0,0,.5);
-}
-
-/* ===== ADMIN ===== */
-#adminPanel{
-  display:none;
-  text-align:center;
-}
-.logout{
-  background:red;
   color:#fff;
-  padding:10px 20px;
+}
+
+button{
+  width:100%;
+  padding:12px;
   border:none;
-  border-radius:8px;
+  border-radius:6px;
+  background:linear-gradient(135deg,#ffd97a,#caa13a);
+  color:#000;
+  font-weight:bold;
   cursor:pointer;
+}
+
+.success{
+  text-align:center;
+  margin-top:15px;
+  color:#7CFF7C;
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LAMP -->
 <div class="lamp-container">
   <div class="cord"></div>
 
-  <div id="lamp" onclick="toggleLamp()"></div>
-
+  <div id="lamp"></div>
   <div class="light"></div>
-  <div class="shadow"></div>
+
+  <div class="login-box" id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div class="success" id="success">✅ Login successful</div>
+  </div>
 </div>
-
-<!-- LOGIN -->
-<div class="login-box" id="loginBox">
-  <h2>Admin Login</h2>
-  <input id="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
-  <button onclick="login()">Login</button>
-</div>
-
-<!-- NAV -->
-<nav>
-  <a href="#" onclick="showPage('home')">Home</a>
-  <a href="#" onclick="showPage('services')">Services</a>
-  <a href="#" onclick="showPage('contact')">Contact</a>
-</nav>
-
-<!-- HOME -->
-<section id="home" class="active">
-  <div class="card">
-    <h1>Creative Dark Website</h1>
-    <p>Modern lamp-based login experience with professional design.</p>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="card">
-    <h2>Our Services</h2>
-    <ul>
-      <li>💻 Website Design</li>
-      <li>🔐 Secure Admin Panel</li>
-      <li>🎨 Creative UI / UX</li>
-    </ul>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="card">
-    <h2>Contact Us</h2>
-    <p>Email: admin@example.com</p>
-    <p>Phone: +235 64743633</p>
-  </div>
-</section>
-
-<!-- ADMIN -->
-<section id="adminPanel">
-  <div class="card">
-    <h1>Admin Dashboard</h1>
-    <p>Only visible after login ✔️</p>
-    <button class="logout" onclick="logout()">Logout</button>
-  </div>
-</section>
 
 <script>
-const ADMIN_EMAIL="admin@example.com";
-const ADMIN_PASS="123456";
+const lamp = document.getElementById("lamp");
+const loginBox = document.getElementById("loginBox");
 
-function toggleLamp(){
-  const lamp=document.getElementById("lamp");
+lamp.onclick = () => {
   lamp.classList.toggle("on");
-
-  document.getElementById("loginBox").style.display="block";
-
-  lamp.style.animation="none";
-  setTimeout(()=>lamp.style.animation="swing 4s ease-in-out infinite",50);
-}
-
+  loginBox.classList.toggle("show");
+};
 
 function login(){
-  const e=email.value,p=password.value;
-  if(e===ADMIN_EMAIL && p===ADMIN_PASS){
-    localStorage.setItem("login","1");
-    document.getElementById("loginBox").style.display="none";
-    showPage("adminPanel");
-  }else alert("Wrong login");
-}
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
+  const success = document.getElementById("success");
 
-function logout(){
-  localStorage.removeItem("login");
-  location.reload();
+  if(email && pass){
+    success.style.display = "block";
+  }else{
+    alert("Enter email and password");
+  }
 }
-
-function showPage(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-
-if(localStorage.getItem("login")) showPage("adminPanel");
 </script>
 
 </body>
