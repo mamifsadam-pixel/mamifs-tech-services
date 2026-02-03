@@ -103,12 +103,17 @@ footer{text-align:center;padding:20px;background:#0b1020;color:#aaa}
     <div class="light"></div>
   </div>
 
-  <div class="login-box" id="loginBox">
-    <h2>Admin Login</h2>
-    <input id="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
+<div id="loginPanel" class="login-panel hidden">
+  <h2>Admin Login</h2>
+
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+
+  <button id="loginBtn" type="button">Login</button>
+
+  <p id="loginMsg"></p>
+</div>
+
 </header>
 
 <nav>
@@ -157,26 +162,24 @@ footer{text-align:center;padding:20px;background:#0b1020;color:#aaa}
 </footer>
 
 <script>
-const lamp=document.getElementById('lamp');
-const loginBox=document.getElementById('loginBox');
-const admin=document.getElementById('admin');
+document.getElementById("loginBtn").addEventListener("click", function () {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const msg = document.getElementById("loginMsg");
 
-lamp.onclick=()=>{
-  lamp.classList.toggle('on');
-  loginBox.style.display='block';
-}
+  if (email === "admin@example.com" && password === "1234") {
+    msg.style.color = "lime";
+    msg.innerText = "Login successful";
 
-function login(){
-  const e=email.value,p=password.value;
-  if(e==='admin@example.com' && p==='1234'){
-    loginBox.style.display='none';
-    admin.style.display='block';
-    window.scrollTo(0,admin.offsetTop);
-  }else alert('Wrong login');
-}
-
-function logout(){location.reload()}
+    document.getElementById("loginPanel").classList.add("hidden");
+    document.getElementById("adminPanel").classList.remove("hidden");
+  } else {
+    msg.style.color = "red";
+    msg.innerText = "Wrong email or password";
+  }
+});
 </script>
+
 
 </body>
 </html>
