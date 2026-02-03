@@ -2,384 +2,210 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MAMIFS – Creative Lamp Login</title>
+<title>Creative Lamp Website</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Arial, sans-serif;
-}
+*{box-sizing:border-box}
 
 body{
-  background: radial-gradient(circle at top, #0a1a2f, #000);
-  color:white;
-  min-height:100vh;
-}
-
-/* ===== HEADER ===== */
-header{
-  text-align:center;
-  padding:50px 20px;
-}
-
-header h1{
-  color:#ffd700;
-  font-size:2.4rem;
-}
-
-header p{
-  color:#9ccfff;
-  margin-top:10px;
+  margin:0;
+  background:#05070d;
+  font-family:Arial, sans-serif;
+  color:#fff;
 }
 
 /* ===== LAMP ===== */
-.lamp-area{
-  margin-top:60px;
-  position:relative;
-  display:flex;
-  justify-content:center;
-}
-
-.lamp{
-  width:80px;
-  height:80px;
-  background:#333;
-  border-radius:50%;
+.lamp-container{
+  position:fixed;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
   cursor:pointer;
-  z-index:2;
-  box-shadow:0 0 10px #000;
+  z-index:10;
 }
-
-.lamp::after{
-  content:"";
+.cable{width:4px;height:160px;background:#444;margin:auto}
+.lamp{width:120px;height:80px;background:#222;border-radius:0 0 60px 60px;position:relative}
+.light{
   position:absolute;
   top:80px;
   left:50%;
   transform:translateX(-50%);
-  width:6px;
-  height:80px;
-  background:#444;
+  width:0;height:0;
+  background:radial-gradient(circle,rgba(255,215,120,.8),transparent 70%);
+  opacity:0;
+  transition:.6s;
 }
-
-.light{
-  position:absolute;
-  top:70px;
-  width:260px;
-  height:260px;
-  background:radial-gradient(circle, rgba(255,215,0,0.6), rgba(255,215,0,0));
-  border-radius:50%;
-  display:none;
-}
+.on .light{width:450px;height:450px;opacity:1}
 
 /* ===== LOGIN ===== */
-#loginBox{
+.login-box{
   display:none;
-  max-width:360px;
-  margin:40px auto;
-  background:#0e253f;
+  position:fixed;
+  top:55%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#0c1020;
   padding:25px;
   border-radius:12px;
-  box-shadow:0 0 25px #00aaff;
+  width:300px;
+  box-shadow:0 0 30px rgba(255,215,100,.3);
+  z-index:9;
 }
-
-#loginBox h2{
-  text-align:center;
-  color:#ffd700;
-  margin-bottom:20px;
-}
-
-#loginBox input{
+.login-box h2{color:gold}
+.login-box input,button{
   width:100%;
-  padding:12px;
-  margin-bottom:12px;
+  padding:10px;
+  margin:8px 0;
   border:none;
   border-radius:6px;
 }
-
-#loginBox button{
-  width:100%;
-  padding:12px;
-  border:none;
-  background:#ffd700;
+.login-box button{
+  background:gold;
   font-weight:bold;
   cursor:pointer;
-  border-radius:6px;
 }
 
-#message{
-  text-align:center;
-  margin-top:10px;
+/* ===== NAV ===== */
+nav{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  padding:20px;
+  background:#0b1020;
+}
+nav a{
+  color:gold;
+  text-decoration:none;
+  font-weight:bold;
 }
 
 /* ===== SECTIONS ===== */
 section{
+  display:none;
   padding:60px 20px;
-}
-
-.light-section{
-  background:#f4f7fb;
-  color:black;
-}
-
-.cards{
-  max-width:1000px;
+  max-width:900px;
   margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
 }
+section.active{display:block}
 
 .card{
-  background:white;
+  background:#101530;
   padding:20px;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+  border-radius:12px;
+  margin:20px 0;
+  box-shadow:0 0 20px rgba(0,0,0,.5);
 }
 
-.card h3{
-  color:#005bb5;
-  margin-bottom:10px;
-}
-
-/* ===== FOOTER ===== */
-footer{
+/* ===== ADMIN ===== */
+#adminPanel{
+  display:none;
   text-align:center;
-  padding:20px;
-  background:black;
-  color:#aaa;
 }
-</style>
-  <style>
-.card input{
-  width:100%;
-  padding:8px;
-  margin:5px 0;
-  border-radius:6px;
+.logout{
+  background:red;
+  color:#fff;
+  padding:10px 20px;
   border:none;
-}
-.card button{
-  margin-top:10px;
-  padding:10px;
-  background:#ffd700;
-  border:none;
-  border-radius:6px;
+  border-radius:8px;
   cursor:pointer;
-  font-weight:bold;
 }
 </style>
-
 </head>
 
 <body>
 
-<header>
-  <h1>MAMIFS IT SOLUTIONS</h1>
-  <p>Creative • Professional • Secure</p>
-
-  <div class="lamp-area">
-    <div class="lamp" id="lamp"></div>
-    <div class="light" id="light"></div>
+<!-- LAMP -->
+<div class="lamp-container" id="lamp" onclick="toggleLamp()">
+  <div class="cable"></div>
+  <div class="lamp">
+    <div class="light"></div>
   </div>
-</header>
+</div>
 
 <!-- LOGIN -->
-<div id="loginBox">
+<div class="login-box" id="loginBox">
   <h2>Admin Login</h2>
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
-  <button id="loginBtn">Login</button>
-  <div id="message"></div>
-</div>
-<!-- ADMIN DASHBOARD -->
-<div id="dashboard" style="display:none;padding:40px;">
-  <h2 style="color:#ffd700;text-align:center;">Admin Dashboard</h2>
-
-  <div style="max-width:1000px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;">
-    
-    <div class="card">
-      <h3>Profile</h3>
-      <p>Admin information & settings</p>
-    </div>
-
-   <div class="card">
-  <h3>Edit Services</h3>
-
-  <input id="s1t" placeholder="Service 1 Title">
-  <input id="s1d" placeholder="Service 1 Description">
-
-  <input id="s2t" placeholder="Service 2 Title">
-  <input id="s2d" placeholder="Service 2 Description">
-
-  <input id="s3t" placeholder="Service 3 Title">
-  <input id="s3d" placeholder="Service 3 Description">
-
-  <button onclick="saveServices()">Save Changes</button>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
 </div>
 
-    <div class="card">
-      <h3>Messages</h3>
-      <p>View client requests</p>
-    </div>
+<!-- NAV -->
+<nav>
+  <a href="#" onclick="showPage('home')">Home</a>
+  <a href="#" onclick="showPage('services')">Services</a>
+  <a href="#" onclick="showPage('contact')">Contact</a>
+</nav>
 
-    <div class="card">
-      <h3>Payments</h3>
-      <p>Manage pricing & invoices</p>
-    </div>
-
-    <div class="card">
-      <h3>Content</h3>
-      <p>Edit texts & sections</p>
-    </div>
-
-    <div class="card">
-      <h3>Logout</h3>
-      <button onclick="logout()" style="padding:10px;border:none;background:#c00;color:white;border-radius:6px;cursor:pointer;">Logout</button>
-    </div>
-
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section id="services">
-  <h2>Our Services</h2>
-
-  <div class="services">
-    <div class="card">
-      <h3 id="service1Title">IT Support</h3>
-      <p id="service1Desc">Computer repair, software installation</p>
-    </div>
-
-    <div class="card">
-      <h3 id="service2Title">Web Design</h3>
-      <p id="service2Desc">Professional websites & management</p>
-    </div>
-
-    <div class="card">
-      <h3 id="service3Title">Training</h3>
-      <p id="service3Desc">IT & English training programs</p>
-    </div>
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="card">
+    <h1>Creative Dark Website</h1>
+    <p>Modern lamp-based login experience with professional design.</p>
   </div>
 </section>
 
+<!-- SERVICES -->
+<section id="services">
+  <div class="card">
+    <h2>Our Services</h2>
+    <ul>
+      <li>💻 Website Design</li>
+      <li>🔐 Secure Admin Panel</li>
+      <li>🎨 Creative UI / UX</li>
+    </ul>
+  </div>
+</section>
 
-<footer>
-  © 2026 MAMIFS – All Rights Reserved
-</footer>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="card">
+    <h2>Contact Us</h2>
+    <p>Email: admin@example.com</p>
+    <p>Phone: +235 64743633</p>
+  </div>
+</section>
+
+<!-- ADMIN -->
+<section id="adminPanel">
+  <div class="card">
+    <h1>Admin Dashboard</h1>
+    <p>Only visible after login ✔️</p>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+</section>
+
 <script>
-const lamp = document.getElementById("lamp");
-const light = document.getElementById("light");
-const loginBox = document.getElementById("loginBox");
-const loginBtn = document.getElementById("loginBtn");
-const dashboard = document.getElementById("dashboard");
+const ADMIN_EMAIL="admin@example.com";
+const ADMIN_PASS="123456";
 
-lamp.onclick = function(){
-  light.style.display = "block";
-  loginBox.style.display = "block";
-};
-
-loginBtn.onclick = function(){
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const message = document.getElementById("message");
-
-  if(email === "admin@mamifs.com" && password === "1234"){
-    message.style.color = "lightgreen";
-    message.innerText = "Login successful ✔️";
-
-    setTimeout(() => {
-      loginBox.style.display = "none";
-      dashboard.style.display = "block";
-      window.scrollTo(0, dashboard.offsetTop);
-    }, 800);
-
-  }else{
-    message.style.color = "red";
-    message.innerText = "Wrong email or password ❌";
-  }
-};
-
-function logout(){
-  dashboard.style.display = "none";
-  loginBox.style.display = "block";
-  document.getElementById("email").value = "";
-  document.getElementById("password").value = "";
-  document.getElementById("message").innerText = "";
+function toggleLamp(){
+  document.getElementById("lamp").classList.toggle("on");
+  document.getElementById("loginBox").style.display="block";
 }
-</script>
- <script>
-const ADMIN_EMAIL = "admin@example.com";
-const ADMIN_PASS  = "123456";
 
 function login(){
-  const e = document.getElementById("email").value;
-  const p = document.getElementById("password").value;
-
-  if(e === ADMIN_EMAIL && p === ADMIN_PASS){
-    localStorage.setItem("loggedIn", "true");
-    showAdmin();
-    alert("Login successful ✔️");
-  } else {
-    alert("Wrong email or password ❌");
-  }
+  const e=email.value,p=password.value;
+  if(e===ADMIN_EMAIL && p===ADMIN_PASS){
+    localStorage.setItem("login","1");
+    document.getElementById("loginBox").style.display="none";
+    showPage("adminPanel");
+  }else alert("Wrong login");
 }
 
 function logout(){
-  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("login");
   location.reload();
 }
 
-function showAdmin(){
-  document.getElementById("loginBox").style.display = "none";
-  document.getElementById("adminPanel").style.display = "block";
+function showPage(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-/* AUTO LOGIN ON PAGE LOAD */
-window.addEventListener("load", () => {
-  if(localStorage.getItem("loggedIn") === "true"){
-    showAdmin();
-  }
-});
+if(localStorage.getItem("login")) showPage("adminPanel");
 </script>
- 
-<script>
-function saveServices(){
-  const data = {
-    s1t: document.getElementById("s1t").value,
-    s1d: document.getElementById("s1d").value,
-    s2t: document.getElementById("s2t").value,
-    s2d: document.getElementById("s2d").value,
-    s3t: document.getElementById("s3t").value,
-    s3d: document.getElementById("s3d").value
-  };
-
-  localStorage.setItem("servicesData", JSON.stringify(data));
-  applyServices();
-
-  alert("Services saved permanently ✔️");
-}
-
-function applyServices(){
-  const saved = localStorage.getItem("servicesData");
-  if(!saved) return;
-
-  const data = JSON.parse(saved);
-
-  document.getElementById("service1Title").innerText = data.s1t;
-  document.getElementById("service1Desc").innerText = data.s1d;
-  document.getElementById("service2Title").innerText = data.s2t;
-  document.getElementById("service2Desc").innerText = data.s2d;
-  document.getElementById("service3Title").innerText = data.s3t;
-  document.getElementById("service3Desc").innerText = data.s3d;
-}
-
-/* Load saved data on page load */
-window.onload = applyServices;
-</script>
-
-
 
 </body>
 </html>
