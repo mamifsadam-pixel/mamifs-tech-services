@@ -2,209 +2,131 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>MAMIFS Tech Solutions</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAMIFS Creative Lamp Website</title>
 
 <style>
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#05070f;color:#fff;overflow-x:hidden}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  background:radial-gradient(circle at top, #0b1020, #05070f);
+  color:white;
+}
 
-/* ===== HEADER / HERO ===== */
+/* HEADER */
 header{
-  height:100vh;
+  padding:25px;
   display:flex;
-  flex-direction:column;
+  justify-content:space-between;
   align-items:center;
-  justify-content:center;
-  text-align:center;
+}
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  color:gold;
+}
+.login-btn{
+  padding:10px 20px;
+  background:linear-gradient(45deg, gold, #c9a000);
+  color:black;
+  border-radius:25px;
+  text-decoration:none;
+  font-weight:bold;
 }
 
-/* ===== LAMP ===== */
-.lamp-wrapper{
-  position:relative;
-  margin-bottom:40px;
+/* HERO */
+.hero{
   text-align:center;
+  padding:80px 20px;
 }
-  
-.cord{
-  width:4px;
-  height:140px;
-  background:#333;
+.hero h1{
+  font-size:40px;
+  color:#6ea8ff;
+}
+.hero p{
+  max-width:600px;
   margin:auto;
+  opacity:.9;
+}
+.hero a{
+  display:inline-block;
+  margin-top:25px;
+  padding:14px 30px;
+  background:gold;
+  color:black;
+  border-radius:30px;
+  font-weight:bold;
+  text-decoration:none;
 }
 
-.lamp{
-  width:140px;
-  height:90px;
-  background:linear-gradient(#222,#000);
-  border-radius:0 0 70px 70px;
-  cursor:pointer;
-  transform-origin:top center;
-  animation:swing 4s ease-in-out infinite;
+/* SERVICES */
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:60px 20px;
 }
-
-@keyframes swing{
-  0%{transform:rotate(2deg)}
-  50%{transform:rotate(-2deg)}
-  100%{transform:rotate(2deg)}
-}
-
-.light{
-  position:absolute;
-  top:220px;
-  left:50%;
-  transform:translateX(-50%);
-  width:0;
-  height:0;
-  background:radial-gradient(circle at top, rgba(255,215,120,.5), transparent 70%);
-  clip-path:polygon(45% 0%,55% 0%,100% 100%,0% 100%);
-  opacity:0;
-  transition:.4s;
-  pointer-events:none;
-}
-
-.lamp.on + .light{
-  width:420px;
-  height:500px;
-  opacity:1;
-}
-
-/* ===== LOGIN ===== */
-.login-box{
-  background:#0c1022;
-  padding:25px;
-  border-radius:12px;
-  width:320px;
-  margin-top:20px;
-  display:none;
-}
-.login-box h2{text-align:center;color:gold;margin-bottom:15px}
-.login-box input, .login-box button{
-  width:100%;padding:12px;margin:8px 0;border:none;border-radius:6px
-}
-.login-box button{background:gold;color:#000;font-weight:bold;cursor:pointer}
-
-/* ===== NAV ===== */
-nav{
-  background:#0b1020;
-  padding:15px;
-  display:flex;
-  justify-content:center;
-  gap:30px;
-}
-nav a{color:gold;text-decoration:none;font-weight:bold}
-
-/* ===== SECTIONS ===== */
-section{padding:60px 20px;max-width:1000px;margin:auto}
 .card{
-  background:#101530;
+  background:#0e1430;
   padding:25px;
-  border-radius:14px;
-  margin:20px 0;
-  box-shadow:0 0 25px rgba(0,0,0,.6)
+  border-radius:16px;
+  transition:.3s;
 }
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 25px rgba(100,150,255,.3);
+}
+.card h3{color:gold}
 
-/* ===== ADMIN ===== */
-#admin{display:none;text-align:center}
-.logout{background:red;color:#fff;padding:10px 20px;border:none;border-radius:8px;cursor:pointer}
-
-footer{text-align:center;padding:20px;background:#0b1020;color:#aaa}
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+  font-size:14px;
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="lamp-wrapper">
-  <div class="cord"></div>
-  <div id="lamp" class="lamp"></div>
-  <div class="light"></div>
-</div>
-
-<div id="loginPanel" class="login-panel hidden">
-  <h2>Admin Login</h2>
-
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
-
-  <button id="loginBtn" type="button">Login</button>
-
-  <p id="loginMsg"></p>
-</div>
-<script>
-const lamp = document.getElementById("lamp");
-const loginPanel = document.getElementById("loginPanel");
-
-lamp.addEventListener("click", () => {
-  lamp.classList.toggle("on");
-  loginPanel.classList.toggle("hidden");
-});
-</script>
-
+  <div class="logo">MAMIFS</div>
+  <a href="login.php" class="login-btn">Admin Login 💡</a>
 </header>
 
-<nav>
-  <a href="#home">Home</a>
-  <a href="#services">Services</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<section id="home">
-  <div class="card">
-    <h1>Welcome to MAMIFS Tech Services</h1>
-    <p>Creative technology, logistics and digital solutions with a modern lamp-based interface.</p>
-  </div>
+<section class="hero">
+  <h1>Creative Digital & IT Solutions</h1>
+  <p>
+    Professional websites, secure systems, IT support,
+    training, and modern technology solutions in Chad.
+  </p>
+  <a href="#services">Our Services</a>
 </section>
 
-<section id="services">
+<section id="services" class="services">
   <div class="card">
-    <h2>Our Services</h2>
-    <ul>
-      <li>IT Support & Repairs</li>
-      <li>Website Design & Hosting</li>
-      <li>Logistics & Delivery</li>
-      <li>Digital Skills Training</li>
-    </ul>
+    <h3>Website Design</h3>
+    <p>Modern, responsive, creative websites with premium UI.</p>
   </div>
-</section>
-
-<section id="contact">
   <div class="card">
-    <h2>Contact</h2>
-    <p>WhatsApp: +235 64 74 36 33</p>
-    <p>Email: mamifsadam@gmail.com</p>
+    <h3>IT Support</h3>
+    <p>Software installation, system fixes, optimization.</p>
   </div>
-</section>
-
-<section id="admin">
   <div class="card">
-    <h2>Admin Dashboard</h2>
-    <p>Login successful ✔️</p>
-    <button class="logout" onclick="logout()">Logout</button>
+    <h3>Training</h3>
+    <p>Computer basics, web, English & digital skills.</p>
+  </div>
+  <div class="card">
+    <h3>Online Payments</h3>
+    <p>Payment gateway integration & business setup.</p>
   </div>
 </section>
 
 <footer>
-  © 2026 MAMIFS Tech Services. All rights reserved.
+  © 2026 MAMIFS Tech • Chad
 </footer>
-
-<script>
-document.getElementById("loginBtn").addEventListener("click", function () {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const msg = document.getElementById("loginMsg");
-
- if (email === "admin@example.com" && password === "1234") {
-  localStorage.setItem("loggedIn", "true");
-  window.location.href = "dashboard.html";
-}
- else {
-    msg.style.color = "red";
-    msg.innerText = "Wrong email or password";
-  }
-});
-</script>
-
 
 </body>
 </html>
