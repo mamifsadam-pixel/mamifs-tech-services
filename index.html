@@ -221,12 +221,21 @@ loginBtn.addEventListener("click", () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  if (email !== "" && password !== "") {
-    message.style.display = "block";
-  } else {
-    alert("Please enter email and password");
-  }
+  fetch("login.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `email=${email}&password=${password}`
+  })
+  .then(res => res.text())
+  .then(data => {
+    if (data === "success") {
+      window.location.href = "dashboard.php";
+    } else {
+      alert("❌ Incorrect email or password");
+    }
+  });
 });
+
 </script>
 
 </body>
