@@ -2,244 +2,192 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MAMIFS Tech Solutions</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>Creative Lamp Login Website</title>
 <style>
-*{box-sizing:border-box}
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
+
 body{
-  margin:0;
-  font-family:Segoe UI, sans-serif;
-  background:radial-gradient(circle at top, #0b1020, #05070f);
-  color:white;
+  background:linear-gradient(135deg,#05080f,#0b1220);
+  color:#eaeaea;
+  min-height:100vh;
 }
 
 /* HEADER */
 header{
-  padding:25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo{
-  font-size:22px;
-  font-weight:bold;
-  color:gold;
-}
-.login-btn{
-  padding:10px 20px;
-  background:linear-gradient(45deg, gold, #c9a000);
-  color:black;
-  border-radius:25px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* HERO */
-.hero{
+  padding:50px 20px;
   text-align:center;
-  padding:80px 20px;
 }
-.hero h1{
-  font-size:40px;
-  color:#6ea8ff;
-}
-.hero p{
-  max-width:600px;
-  margin:auto;
-  opacity:.9;
-}
-.hero a{
-  display:inline-block;
-  margin-top:25px;
-  padding:14px 30px;
-  background:gold;
-  color:black;
-  border-radius:30px;
-  font-weight:bold;
-  text-decoration:none;
+header h1{font-size:2.6rem;color:#4da3ff}
+header p{margin-top:10px;color:#aaa}
+
+/* MAIN */
+main{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:40px;
 }
 
-/* SERVICES */
-.services{
+/* LAMP AREA */
+.lamp-area{text-align:center}
+.lamp-area p{color:#bbb;margin-bottom:15px}
+
+.lamp{
+  position:relative;
+  width:120px;
+  height:150px;
+  background:#111;
+  border-radius:12px 12px 40px 40px;
+  cursor:pointer;
+}
+.lamp::before{
+  content:"";
+  position:absolute;
+  top:-70px;
+  left:50%;
+  transform:translateX(-50%);
+  width:6px;
+  height:70px;
+  background:#333;
+}
+
+.light{
+  position:absolute;
+  top:150px;
+  left:50%;
+  transform:translateX(-50%);
+  width:300px;
+  height:180px;
+  background:radial-gradient(ellipse at top, rgba(255,215,120,.9), rgba(255,215,120,0));
+  display:none;
+}
+
+/* LOGIN */
+.login-box{
+  display:none;
+  background:#0b1220;
+  padding:30px;
+  border-radius:14px;
+  width:320px;
+  box-shadow:0 0 30px rgba(0,0,0,.6);
+}
+.login-box h2{text-align:center;color:#ffd66b;margin-bottom:20px}
+.login-box input{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border:none;
+  border-radius:8px;
+}
+.login-box button{
+  width:100%;
+  padding:12px;
+  background:#4da3ff;
+  color:#000;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.login-box .msg{text-align:center;margin-top:10px;font-size:.9rem}
+
+/* DASHBOARD */
+.dashboard{
+  display:none;
+  width:90%;
+  max-width:900px;
+  background:#0b1220;
+  padding:30px;
+  border-radius:16px;
+}
+.dashboard h2{color:#4da3ff;margin-bottom:15px}
+.cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:20px;
-  padding:60px 20px;
 }
 .card{
-  background:#0e1430;
-  padding:25px;
-  border-radius:16px;
-  transition:.3s;
+  background:#05080f;
+  padding:20px;
+  border-radius:12px;
 }
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 25px rgba(100,150,255,.3);
-}
-.card h3{color:gold}
+.card h3{color:#ffd66b;margin-bottom:8px}
 
-/* FOOTER */
 footer{
+  margin-top:50px;
+  padding:20px;
   text-align:center;
-  padding:30px;
-  opacity:.6;
-  font-size:14px;
+  color:#666;
 }
 </style>
 </head>
-
 <body>
 
-<section class="hero">
-  <h1>Creative Digital & IT Solutions</h1>
-  <p>
-    Professional websites, secure systems, IT support,
-    training, and modern technology solutions in Chad.
-  </p>
-  <a href="#services">Our Services</a>
-</section>
+<header>
+  <h1>Creative Tech Website</h1>
+  <p>Click the lamp to access the admin panel</p>
+</header>
 
-<section id="services" class="services">
-  <div class="card">
-    <h3>Website Design</h3>
-    <p>Modern, responsive, creative websites with premium UI.</p>
+<main>
+  <!-- LAMP -->
+  <div class="lamp-area">
+    <p>Admin Access</p>
+    <div class="lamp" id="lamp">
+      <div class="light" id="light"></div>
+    </div>
   </div>
-  <div class="card">
-    <h3>IT Support</h3>
-    <p>Software installation, system fixes, optimization.</p>
+
+  <!-- LOGIN -->
+  <div class="login-box" id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div class="msg" id="msg"></div>
   </div>
-  <div class="card">
-    <h3>Training</h3>
-    <p>Computer basics, web, English & digital skills.</p>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard" id="dashboard">
+    <h2>Dashboard</h2>
+    <p>Welcome, Admin 👋</p>
+    <div class="cards">
+      <div class="card"><h3>Services</h3><p>Web Design, IT Support, Training</p></div>
+      <div class="card"><h3>Clients</h3><p>Manage your clients</p></div>
+      <div class="card"><h3>Settings</h3><p>Update website content</p></div>
+    </div>
   </div>
-  <div class="card">
-    <h3>Online Payments</h3>
-    <p>Payment gateway integration & business setup.</p>
-  </div>
-</section>
+</main>
 
-<footer>
-  © 2026 MAMIFS Tech • Chad
-</footer>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Lamp Login</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: radial-gradient(circle at top, #111, #000);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, sans-serif;
-  color: white;
-}
-
-/* Lamp */
-#lamp {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: #222;
-  box-shadow: 0 0 20px #000;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#lamp.on {
-  background: gold;
-  box-shadow: 0 0 60px gold;
-}
-
-/* Login box */
-#loginBox {
-  position: absolute;
-  top: 55%;
-  width: 300px;
-  background: #111;
-  padding: 20px;
-  border-radius: 10px;
-  display: none;
-  box-shadow: 0 0 30px rgba(255,215,0,0.3);
-}
-
-#loginBox input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 5px;
-  border: none;
-}
-
-#loginBox button {
-  width: 100%;
-  padding: 10px;
-  background: gold;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#message {
-  margin-top: 10px;
-  color: lightgreen;
-  display: none;
-}
-</style>
-</head>
-
-<body>
-
-<div id="lamp" title="Click to login"></div>
-
-<div id="loginBox">
-  <h3>Admin Login</h3>
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
-  <button id="loginBtn">Login</button>
-  <div id="message">✅ Login successful</div>
-</div>
+<footer>© 2026 Creative Tech</footer>
 
 <script>
-const lamp = document.getElementById("lamp");
-const loginBox = document.getElementById("loginBox");
-const loginBtn = document.getElementById("loginBtn");
-const message = document.getElementById("message");
+// LAMP CLICK
+const lamp=document.getElementById('lamp');
+const light=document.getElementById('light');
+const loginBox=document.getElementById('loginBox');
 
-lamp.addEventListener("click", () => {
-  lamp.classList.toggle("on");
-  loginBox.style.display = "block";
+lamp.addEventListener('click',()=>{
+  light.style.display='block';
+  loginBox.style.display='block';
 });
 
-loginBtn.addEventListener("click", () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+// LOGIN LOGIC (DEMO)
+function login(){
+  const email=document.getElementById('email').value;
+  const password=document.getElementById('password').value;
+  const msg=document.getElementById('msg');
 
-  fetch("login.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `email=${email}&password=${password}`
-  })
-  .then(res => res.text())
-  .then(data => {
-    if (data === "success") {
-      window.location.href = "dashboard.php";
-    } else {
-      alert("❌ Incorrect email or password");
-    }
-  });
-});
-
+  if(email==='admin@example.com' && password==='1234'){
+    document.getElementById('loginBox').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+  }else{
+    msg.style.color='red';
+    msg.innerText='Invalid login details';
+  }
+}
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
