@@ -1,3 +1,8 @@
+if ($email === "admin@site.com" && $password === "admin123") {
+  $_SESSION['admin'] = true;
+  header("Location: dashboard.php");
+}
+
 <?php
 include "config.php";
 
