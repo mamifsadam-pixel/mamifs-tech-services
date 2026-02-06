@@ -1,10 +1,14 @@
 <?php
-include "config.php";
+session_start();
 if (!isset($_SESSION['admin'])) {
   header("Location: index.html");
   exit;
 }
 ?>
+
+<h1>Welcome Admin</h1>
+<a href="logout.php">Logout</a>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
