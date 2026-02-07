@@ -13,6 +13,68 @@ body{
   color:#eaeaea;
   min-height:100vh;
 }
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle, #0a0f1f, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial;
+  color: #fff;
+}
+
+/* Lamp */
+#lamp-container {
+  text-align: center;
+  cursor: pointer;
+}
+
+#lamp {
+  width: 80px;
+  height: 120px;
+  background: #222;
+  border-radius: 40px;
+  box-shadow: inset 0 0 10px #000;
+  transition: 0.5s;
+}
+
+/* Lamp ON */
+#lamp.on {
+  background: gold;
+  box-shadow: 0 0 40px gold, 0 0 80px gold;
+}
+
+/* Login panel */
+#login-panel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  padding: 20px;
+  background: #0b132b;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+  display: none;
+}
+
+#login-panel.show {
+  display: block;
+}
+
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  background: gold;
+  cursor: pointer;
+  font-weight: bold;
+}
 
 /* HEADER */
 header{
