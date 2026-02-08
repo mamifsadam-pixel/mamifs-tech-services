@@ -4,7 +4,13 @@ if (!isset($_SESSION['admin'])) {
   header("Location: index.html");
   exit;
 }
+include "db.php";
+
+/* Fetch data */
+$services = $conn->query("SELECT COUNT(*) AS total FROM services")->fetch_assoc();
+$payments = $conn->query("SELECT COUNT(*) AS total FROM payments")->fetch_assoc();
 ?>
+
 
 <h1>Welcome Admin</h1>
 <a href="logout.php">Logout</a>
