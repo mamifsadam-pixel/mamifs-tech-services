@@ -22,3 +22,8 @@ if ($stmt->num_rows === 1) {
 }
 
 echo "error";
+session_start();
+if (!isset($_SESSION['admin'])) {
+  header('Location: index.html');
+  exit;
+}
