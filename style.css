@@ -153,3 +153,21 @@ footer {
     display: block;
   }
 }
+.lang-switch {
+  display: flex;
+  gap: 8px;
+}
+
+.lang-switch button {
+  background: transparent;
+  border: 1px solid #0d6efd;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.lang-switch button:hover {
+  background: #0d6efd;
+}
