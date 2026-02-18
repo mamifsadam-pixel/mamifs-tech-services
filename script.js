@@ -1,1 +1,6 @@
-console.log("Mamifs Tech Premium Website Loaded");
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("navMenu");
+
+toggle.onclick = () => {
+  nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+};
