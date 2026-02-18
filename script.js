@@ -1,1 +1,1 @@
-console.log("Mamifs Tech website loaded");
+console.log("Mamifs Tech Premium Website Loaded");
