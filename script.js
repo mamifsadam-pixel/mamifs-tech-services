@@ -11,3 +11,10 @@ window.onload = () => {
   const savedLang = localStorage.getItem("language") || "en";
   setLanguage(savedLang);
 };
+window.onload = () => {
+  document.querySelectorAll(".fade-in").forEach(el => {
+    el.style.animation = "none";
+    el.offsetHeight; // trigger reflow
+    el.style.animation = "";
+  });
+};
