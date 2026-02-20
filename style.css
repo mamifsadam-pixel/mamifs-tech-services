@@ -78,6 +78,17 @@ body {
   flex-wrap: wrap;
 }
 
+.btn {
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(13,110,253,0.35);
+}
 
 .section {
   padding: 90px 60px;
