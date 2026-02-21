@@ -225,3 +225,19 @@ footer {
 .lang-switch button:hover {
   background: #0d6efd;
 }
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger effect for cards */
+.cards .card.reveal {
+  transition-delay: 0.15s;
+}
