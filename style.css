@@ -241,3 +241,69 @@ footer {
 .cards .card.reveal {
   transition-delay: 0.15s;
 }
+/* HERO GLOW */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #0a2a66, #020b1f);
+}
+
+/* Glow pulse */
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  background: rgba(0, 140, 255, 0.35);
+  filter: blur(120px);
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: glowPulse 6s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { opacity: 0.4; }
+  to { opacity: 0.8; }
+}
+
+/* PARTICLES */
+.hero-effects {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  animation: floatUp 14s linear infinite;
+}
+
+/* Random positions */
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 30%; animation-delay: 3s; }
+.particle:nth-child(3) { left: 50%; animation-delay: 6s; }
+.particle:nth-child(4) { left: 70%; animation-delay: 2s; }
+.particle:nth-child(5) { left: 90%; animation-delay: 5s; }
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  20% { opacity: 1; }
+  to {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
+
+/* Keep hero content above effects */
+.hero * {
+  position: relative;
+  z-index: 1;
+}
