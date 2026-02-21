@@ -181,6 +181,21 @@ document.querySelectorAll('.gallery-item img').forEach(img => {
   });
 });
 </script>
+<script>
+const cta = document.querySelector('.cta-box');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      cta.style.transform = "scale(1)";
+      cta.style.opacity = "1";
+    }
+  });
+});
+cta.style.transform = "scale(0.9)";
+cta.style.opacity = "0";
+cta.style.transition = "all 0.8s ease";
+observer.observe(cta);
+</script>
 
 </body>
 </html>
