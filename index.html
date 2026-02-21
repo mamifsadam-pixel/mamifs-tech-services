@@ -150,6 +150,44 @@
     </div>
   </div>
 </section>
+<section id="register" class="section reveal">
+  <h2 data-en="Student Registration"
+      data-fr="Inscription des Étudiants">
+    Student Registration
+  </h2>
+
+  <form class="register-form"
+        action="https://formsubmit.co/mamifsadam@gmail.com"
+        method="POST">
+
+    <!-- Disable captcha -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Student Registration - Mamifs Tech">
+
+    <input type="text" name="Full Name" placeholder="Full Name" required>
+
+    <input type="tel" name="Phone / WhatsApp" placeholder="Phone / WhatsApp" required>
+
+    <input type="email" name="Email" placeholder="Email Address">
+
+    <select name="Course" required>
+      <option value="">Select Course</option>
+      <option>Computer Basics</option>
+      <option>Microsoft Office</option>
+      <option>Graphic Design</option>
+      <option>Web Design</option>
+      <option>Digital Skills</option>
+    </select>
+
+    <textarea name="Message" placeholder="Any message or question?"></textarea>
+
+    <button type="submit"
+            data-en="Submit Registration"
+            data-fr="Envoyer l’inscription">
+      Submit Registration
+    </button>
+  </form>
+</section>
 
 <section id="contact" class="section reveal">
   ...
