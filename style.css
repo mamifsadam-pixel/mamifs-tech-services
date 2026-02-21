@@ -361,3 +361,70 @@ footer {
 .gallery-item:hover span {
   opacity: 1;
 }
+/* CTA SECTION */
+.cta {
+  padding: 90px 8%;
+  background: linear-gradient(135deg, #0a1b3d, #050f24);
+  text-align: center;
+}
+
+.cta-box {
+  max-width: 900px;
+  margin: auto;
+  padding: 60px 40px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+}
+
+.cta h2 {
+  font-size: 2.6rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.cta p {
+  font-size: 1.15rem;
+  color: #cfd8ff;
+  margin-bottom: 40px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  padding: 15px 34px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 30px rgba(37,99,235,0.5);
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-3px);
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  padding: 15px 34px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 30px rgba(37,211,102,0.5);
+}
+
+.btn-whatsapp:hover {
+  background: #1ebc5a;
+  transform: translateY(-3px);
+}
