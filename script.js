@@ -36,3 +36,44 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
+// AUTO GALLERY SLIDER
+const slides = document.querySelector('.slides');
+const images = document.querySelectorAll('.slides img');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+let index = 0;
+let interval;
+
+function showSlide(i) {
+  index = (i + images.length) % images.length;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}
+
+function nextSlide() { showSlide(index + 1); }
+function prevSlide() { showSlide(index - 1); }
+
+nextBtn.addEventListener('click', nextSlide);
+prevBtn.addEventListener('click', prevSlide);
+
+// Auto play
+function startAuto() {
+  interval = setInterval(nextSlide, 3500);
+}
+function stopAuto() {
+  clearInterval(interval);
+}
+
+slides.addEventListener('mouseenter', stopAuto);
+slides.addEventListener('mouseleave', startAuto);
+
+// Swipe (mobile)
+let startX = 0;
+slides.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+slides.addEventListener('touchend', e => {
+  let endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) nextSlide();
+  if (endX - startX > 50) prevSlide();
+});
+
+startAuto();
