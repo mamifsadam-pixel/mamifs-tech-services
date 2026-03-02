@@ -176,7 +176,9 @@ body {
   width: 100%;
   object-fit: cover;
 }
-
+.slides:hover {
+  animation-play-state: paused;
+}
 /* AUTO SLIDE */
 @keyframes slide {
   0% { transform: translateX(0); }
